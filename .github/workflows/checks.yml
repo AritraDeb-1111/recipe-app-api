@@ -20,6 +20,11 @@ jobs:
         uses: actions/checkout@v2 # action that provided by github automatically  or provided by github premade for free and basically
         # it checks our code out inside our GitHub actions job
         # WE need yo use this check out step here to make sure the code is available for us to run the next step on
+      - name: Set up Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+          
       - name: Test
         run: docker-compose run --rm app sh -c "python manage.py test" # Command that runs unit tests on our project
       - name: Lint
