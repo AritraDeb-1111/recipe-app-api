@@ -1,4 +1,4 @@
-version: '3.9'
+# version: '3.9'
 
 services:  # Docker Compose file consist of one or more services
   app: # Name of our service, this is just the service which run our docker file
