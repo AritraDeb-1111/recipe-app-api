@@ -21,4 +21,6 @@ jobs:
         # it checks our code out inside our GitHub actions job
         # WE need yo use this check out step here to make sure the code is available for us to run the next step on
       - name: Test
-        uses: docker-compose run --rm app sh -c "python manage.py test" # Command that runs unit tests on our project
+        run: docker-compose run --rm app sh -c "python manage.py test" # Command that runs unit tests on our project
+      - name: Lint
+        run: docker-compose run --rm app sh -c "flake8"
