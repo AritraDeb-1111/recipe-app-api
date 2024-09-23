@@ -1,0 +1,24 @@
+---  # THis specify that this is a yaml file
+name: Checks # Name that is going yo appear in github actions
+
+on: [push] # THis is the trigger
+
+jobs:
+  test-lint:  # new job , Id of the job
+    name: Test and Lint # We will see this human freindly name on github actions
+    runs-on: ubuntu-20.04 # Runner that we are going to  running our job on
+    steps:
+    # this defines our first step of our job
+      - name: Login to Docker HUb
+        uses: docker/login-action@v1  # So uses allows you to use another pre-amde action that's provided in the github actions repository
+        # Github actions is basically just a docker container and a Docker config that's set up to perform a certain task.
+        # SO this perticular action is the docker / login action of version 1 which is in the main docker repo.
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2 # action that provided by github automatically  or provided by github premade for free and basically
+        # it checks our code out inside our GitHub actions job
+        # WE need yo use this check out step here to make sure the code is available for us to run the next step on
+      - name: Test
+        uses: docker-compose run --rm app sh -c "python manage.py test" # Command that runs unit tests on our project

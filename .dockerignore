@@ -1,0 +1,18 @@
+# Git
+# .git is a hidden directory of git
+.git 
+.gitignore
+
+# .docker is a docker hidden file that might be created while creating the docker image
+#Docker
+.docker
+
+# Python
+# When we create a python it creates a cache and put those inide pycache
+app/_pycache_/
+app/*/_pycache_/
+app/*/*/_pycache_/
+app/*/*/*/_pycache_/
+.env/
+.venv/
+venv/
